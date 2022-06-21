@@ -1,0 +1,20 @@
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: bitwarden-ingress
+  namespace: bitwarden
+  annotations:
+    # ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  rules:
+    - host: "yoursite.com"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: bitwarden-service
+                port:
+                  number: 8092
